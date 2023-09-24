@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { delay, of } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 
 enum WorkType {
   ROMAN = 'Roman',
@@ -50,7 +52,7 @@ const ELEMENT_DATA: Work[] = [
   providedIn: 'root',
 })
 export class WorkService {
-  public getWorks(): Work[] {
-    return ELEMENT_DATA;
+  public getWorks(): Observable<Work[]> {
+    return of(ELEMENT_DATA).pipe(delay(1000));
   }
 }
